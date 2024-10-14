@@ -1,4 +1,4 @@
-# GO-IMG-KERNEL
+# GO-IMG-KERNEL - [![Godoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://pkg.go.dev/github.com/salamnocap/go-img-kernel)
 **GO-IMG-KERNEL** is a Go library for image processing, 
 leveraging convolutional operations to perform various transformations such as blurring, 
 edge detection, binarization, and more. 
