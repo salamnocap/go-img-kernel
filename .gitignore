@@ -25,6 +25,7 @@ go.work.sum
 .env
 
 # General
+*.DS_Store
 .DS_Store
 .AppleDouble
 .LSOverride

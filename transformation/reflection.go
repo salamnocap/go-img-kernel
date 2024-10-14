@@ -1,10 +1,10 @@
 package transformation
 
 import (
-	"Go-Image-Kernels/kernel"
+	"github.com/salamnocap/go-img-kernel/kernel"
 )
 
-func reflectionKernel() *kernel.Kernel {
+func ReflectionKernel() *kernel.Kernel {
 	k := kernel.NewKernel(
 		3,
 		[][]float64{
@@ -17,11 +17,11 @@ func reflectionKernel() *kernel.Kernel {
 }
 
 func ReflectionTransformationRGB(rgbImage [][][]float64, padding int, stride int) [][][]float64 {
-	identity := reflectionKernel()
+	identity := ReflectionKernel()
 	return kernel.Convolve3D(rgbImage, identity, padding, stride)
 }
 
 func ReflectionTransformationGray(grayImage [][]float64, padding int, stride int) [][]float64 {
-	identity := reflectionKernel()
+	identity := ReflectionKernel()
 	return kernel.Convolve2D(grayImage, identity, padding, stride)
 }

@@ -1,10 +1,10 @@
 package transformation
 
 import (
-	"Go-Image-Kernels/kernel"
+	"github.com/salamnocap/go-img-kernel/kernel"
 )
 
-func sharpenKernel() *kernel.Kernel {
+func SharpenKernel() *kernel.Kernel {
 	k := kernel.NewKernel(
 		3,
 		[][]float64{
@@ -17,11 +17,11 @@ func sharpenKernel() *kernel.Kernel {
 }
 
 func SharpenImageRGB(rgbImage [][][]float64, padding int, stride int) [][][]float64 {
-	sharpen := sharpenKernel()
+	sharpen := SharpenKernel()
 	return kernel.Convolve3D(rgbImage, sharpen, padding, stride)
 }
 
 func SharpenImageGray(grayImage [][]float64, padding int, stride int) [][]float64 {
-	sharpen := sharpenKernel()
+	sharpen := SharpenKernel()
 	return kernel.Convolve2D(grayImage, sharpen, padding, stride)
 }

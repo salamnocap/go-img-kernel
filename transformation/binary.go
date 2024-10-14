@@ -1,6 +1,6 @@
 package transformation
 
-import "Go-Image-Kernels/utils"
+import "github.com/salamnocap/go-img-kernel/utils"
 
 func BinarizationGray(grayImage [][]float64, threshold float64) [][]float64 {
 	for i := 0; i < len(grayImage); i++ {

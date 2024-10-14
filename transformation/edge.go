@@ -1,11 +1,11 @@
 package transformation
 
 import (
-	"Go-Image-Kernels/kernel"
-	"Go-Image-Kernels/utils"
+	"github.com/salamnocap/go-img-kernel/kernel"
+	"github.com/salamnocap/go-img-kernel/utils"
 )
 
-func edgeKernel() *kernel.Kernel {
+func EdgeKernel() *kernel.Kernel {
 	k := kernel.NewKernel(
 		3,
 		[][]float64{
@@ -17,7 +17,7 @@ func edgeKernel() *kernel.Kernel {
 	return k
 }
 
-func diagonalEdgeKernel() *kernel.Kernel {
+func DiagonalEdgeKernel() *kernel.Kernel {
 	k := kernel.NewKernel(
 		3,
 		[][]float64{
@@ -30,23 +30,23 @@ func diagonalEdgeKernel() *kernel.Kernel {
 }
 
 func EdgeDetectionRGB(rgbImage [][][]float64, padding int, stride int) [][]float64 {
-	edge := edgeKernel()
+	edge := EdgeKernel()
 	grayImage := utils.RgbToGray(rgbImage)
 	return kernel.Convolve2D(grayImage, edge, padding, stride)
 }
 
 func DiagonalEdgeDetectionRGB(rgbImage [][][]float64, padding int, stride int) [][]float64 {
-	edge := diagonalEdgeKernel()
+	edge := DiagonalEdgeKernel()
 	grayImage := utils.RgbToGray(rgbImage)
 	return kernel.Convolve2D(grayImage, edge, padding, stride)
 }
 
 func EdgeDetectionGray(grayImage [][]float64, padding int, stride int) [][]float64 {
-	edge := edgeKernel()
+	edge := EdgeKernel()
 	return kernel.Convolve2D(grayImage, edge, padding, stride)
 }
 
 func DiagonalEdgeDetectionGray(grayImage [][]float64, padding int, stride int) [][]float64 {
-	edge := diagonalEdgeKernel()
+	edge := DiagonalEdgeKernel()
 	return kernel.Convolve2D(grayImage, edge, padding, stride)
 }

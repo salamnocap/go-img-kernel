@@ -1,10 +1,10 @@
 package transformation
 
 import (
-	"Go-Image-Kernels/kernel"
+	"github.com/salamnocap/go-img-kernel/kernel"
 )
 
-func gaussianBlurKernel() *kernel.Kernel {
+func GaussianBlurKernel() *kernel.Kernel {
 	k := kernel.NewKernel(
 		3,
 		[][]float64{
@@ -16,7 +16,7 @@ func gaussianBlurKernel() *kernel.Kernel {
 	return k
 }
 
-func gaussianBlurKernel5() *kernel.Kernel {
+func GaussianBlurKernel5() *kernel.Kernel {
 	k := kernel.NewKernel(
 		5,
 		[][]float64{
@@ -31,11 +31,11 @@ func gaussianBlurKernel5() *kernel.Kernel {
 }
 
 func GaussianBlurRGB(rgbImage [][][]float64, padding int, stride int) [][][]float64 {
-	blur := gaussianBlurKernel()
+	blur := GaussianBlurKernel()
 	return kernel.Convolve3D(rgbImage, blur, padding, stride)
 }
 
 func GaussianBlurRGB5(rgbImage [][][]float64, padding int, stride int) [][][]float64 {
-	blur := gaussianBlurKernel5()
+	blur := GaussianBlurKernel5()
 	return kernel.Convolve3D(rgbImage, blur, padding, stride)
 }

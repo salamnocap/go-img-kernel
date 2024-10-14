@@ -40,7 +40,7 @@ func LoadImage(filePath string) (image.Image, error) {
 	return img, nil
 }
 
-func getRGB(img image.Image) [][][]float64 {
+func GetRGB(img image.Image) [][][]float64 {
 	bounds := img.Bounds()
 
 	rgbMatrix := make([][][]float64, bounds.Max.Y-bounds.Min.Y)
@@ -66,7 +66,7 @@ func getRGB(img image.Image) [][][]float64 {
 	return rgbMatrix
 }
 
-func getGrayscale(img image.Image) [][]float64 {
+func GetGrayscale(img image.Image) [][]float64 {
 	bounds := img.Bounds()
 
 	grayMatrix := make([][]float64, bounds.Max.Y-bounds.Min.Y)
@@ -90,7 +90,7 @@ func LoadGrayImage(filePath string) ([][]float64, error) {
 	if err != nil {
 		return nil, err
 	}
-	return getGrayscale(img), nil
+	return GetGrayscale(img), nil
 }
 
 func LoadRGBImage(filePath string) ([][][]float64, error) {
@@ -98,7 +98,7 @@ func LoadRGBImage(filePath string) ([][][]float64, error) {
 	if err != nil {
 		return nil, err
 	}
-	return getRGB(img), nil
+	return GetRGB(img), nil
 }
 
 func RgbToGray(rgbImage [][][]float64) [][]float64 {

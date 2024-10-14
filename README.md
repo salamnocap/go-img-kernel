@@ -1,4 +1,4 @@
-# GO-IMG-KERNEL
+# GO-IMG-KERNEL [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/salamnocap/go-img-kernel/master/LICENSE)
 **GO-IMG-KERNEL** is a Go library for image processing, 
 leveraging convolutional operations to perform various transformations such as blurring, 
 edge detection, binarization, and more. 
@@ -18,9 +18,26 @@ whether in RGB or grayscale formats.
   - Horizontal transformation
   - Sharpening
 
+## Installation
+    
+```bash
+go get github.com/salamnocap/go-img-kernel
+```
+
+## Run Tests
+
+```bash
+go test -v ./test
+```
+
 ## Usage
     
 ```go
+import (
+  "github.com/salamnocap/go-img-kernel/utils"
+  "github.com/salamnocap/go-img-kernel/transformation"
+)
+
 rgbImage, err := utils.LoadRGBImage(
     "../examples/input/castle_rgb.jpg",
 ) // Load RGB image
@@ -38,6 +55,42 @@ if err != nil {
 }
 ```
 
+## Custom Kernel
+
+```go
+import (
+	"github.com/salamnocap/go-img-kernel/kernel"
+    "github.com/salamnocap/go-img-kernel/utils"
+)
+
+// Custom kernel
+customKernel := kernel.NewKernel(
+	3, // Kernel size
+    [][]float64{
+        {0, -1, 0},
+        {-1, 4, -1},
+        {0, -1, 0},
+    },
+)
+
+inputImage, err := utils.LoadRGBImage(
+    "../examples/input/castle_rgb.jpg",
+) // Load RGB image
+if err != nil {
+    panic(err)
+}
+
+outputImage := kernel.Convolve3D(inputImage, customKernel, 0, 1) // Apply custom kernel (0 - padding, 1 - stride)
+err = utils.SaveImage(
+    newImage,
+    "../examples/output/new_image.jpg",
+    false, // if false, save as RGB image
+) // Save image
+if err != nil {
+	panic(err)
+}
+```
+
 ## Examples
 
 | Transformation            |                                                                              Kernel Matrix                                                                               | Input Image                                             |                         Output Image                          |
@@ -52,9 +105,3 @@ if err != nil {
 | Horizontal Transformation |                                            $`\begin{bmatrix} -10 & 10 & -10 \\ 10 & 10 & 10 \\ -10 & 10 & -10 \end{bmatrix}`$                                            | ![castle_rgb.jpg](examples/input/castle_rgb.jpg)         | ![horizontal_transformed.jpg](examples/output/horizontal.jpg) |
 | Ridge Detection           |                                              $`\begin{bmatrix} -1 & -1 & -1 \\ -1 & 8 & -1 \\ -1 & -1 & -1 \end{bmatrix}`$                                               | ![castle_rgb.jpg](examples/input/castle_rgb.jpg)         |            ![ridge.jpg](examples/output/ridge.jpg)            |
 | Sharpening                |                                                $`\begin{bmatrix} 0 & -1 & 0 \\ -1 & 5 & -1 \\ 0 & -1 & 0 \end{bmatrix}`$                                                 | ![castle_rgb.jpg](examples/input/castle_rgb.jpg)         |        ![sharpened.jpg](examples/output/sharpened.jpg)        |
-
-## Testing
-
-```bash
-go test -v ./test
-```

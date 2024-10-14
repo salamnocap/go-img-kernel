@@ -1,11 +1,11 @@
 package transformation
 
 import (
-	"Go-Image-Kernels/kernel"
-	"Go-Image-Kernels/utils"
+	"github.com/salamnocap/go-img-kernel/kernel"
+	"github.com/salamnocap/go-img-kernel/utils"
 )
 
-func ridgeKernel() *kernel.Kernel {
+func RidgeKernel() *kernel.Kernel {
 	k := kernel.NewKernel(
 		3,
 		[][]float64{
@@ -18,7 +18,7 @@ func ridgeKernel() *kernel.Kernel {
 }
 
 func RidgeDetectionGray(grayImage [][]float64, padding int, stride int) [][]float64 {
-	ridge := ridgeKernel()
+	ridge := RidgeKernel()
 	return kernel.Convolve2D(grayImage, ridge, padding, stride)
 }
 

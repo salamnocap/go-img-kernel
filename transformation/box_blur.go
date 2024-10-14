@@ -1,10 +1,10 @@
 package transformation
 
 import (
-	"Go-Image-Kernels/kernel"
+	"github.com/salamnocap/go-img-kernel/kernel"
 )
 
-func boxBlurKernel() *kernel.Kernel {
+func BoxBlurKernel() *kernel.Kernel {
 	k := kernel.NewKernel(
 		3,
 		[][]float64{
@@ -17,6 +17,6 @@ func boxBlurKernel() *kernel.Kernel {
 }
 
 func BoxBlurRGB(rgbImage [][][]float64, padding int, stride int) [][][]float64 {
-	blur := boxBlurKernel()
+	blur := BoxBlurKernel()
 	return kernel.Convolve3D(rgbImage, blur, padding, stride)
 }

@@ -1,10 +1,10 @@
 package transformation
 
 import (
-	"Go-Image-Kernels/kernel"
+	"github.com/salamnocap/go-img-kernel/kernel"
 )
 
-func horizontalKernel() *kernel.Kernel {
+func HorizontalKernel() *kernel.Kernel {
 	k := kernel.NewKernel(
 		3,
 		[][]float64{
@@ -16,7 +16,7 @@ func horizontalKernel() *kernel.Kernel {
 	return k
 }
 
-func horizontalKernel5() *kernel.Kernel {
+func HorizontalKernel5() *kernel.Kernel {
 	k := kernel.NewKernel(
 		5,
 		[][]float64{
@@ -29,11 +29,11 @@ func horizontalKernel5() *kernel.Kernel {
 }
 
 func HorizontalTransformationRGB(rgbImage [][][]float64, padding int, stride int) [][][]float64 {
-	horizontal := horizontalKernel()
+	horizontal := HorizontalKernel()
 	return kernel.Convolve3D(rgbImage, horizontal, padding, stride)
 }
 
 func HorizontalTransformationGray(grayImage [][]float64, padding int, stride int) [][]float64 {
-	horizontal := horizontalKernel()
+	horizontal := HorizontalKernel()
 	return kernel.Convolve2D(grayImage, horizontal, padding, stride)
 }
