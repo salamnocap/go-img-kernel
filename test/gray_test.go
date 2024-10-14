@@ -1,8 +1,8 @@
 package test
 
 import (
-	"Go-Image-Kernels/transformation"
-	"Go-Image-Kernels/utils"
+	"github.com/salamnocap/go-img-kernel/transformation"
+	"github.com/salamnocap/go-img-kernel/utils"
 	"testing"
 )
 
